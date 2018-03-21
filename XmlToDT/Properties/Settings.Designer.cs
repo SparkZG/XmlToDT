@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace XmlToDT.Properties {
+namespace XML.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
