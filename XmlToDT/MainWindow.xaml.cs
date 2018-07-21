@@ -49,6 +49,7 @@ namespace XmlToDT
             string filePath = AppDomain.CurrentDomain.BaseDirectory + "\\" + "Translate.xls";
             if (File.Exists(filePath))
                 LanguageTable = DealXLS.ExcelToDS(filePath).Tables[0];
+            DXSplashScreen.Close();
         }
 
         private void TableView_CellValueChanged(object sender, CellValueChangedEventArgs e)
@@ -98,6 +99,7 @@ namespace XmlToDT
 
         private void LoadXML(string fileName)
         {
+            DXSplashScreen.Show<SplashScreenBomb>();
             DataSource = DealXML.XmlToDataTableByFile(fileName);
             tabSource.Clear();
             foreach (DataTable item in DataSource.Tables)
@@ -121,6 +123,7 @@ namespace XmlToDT
                 }
             }
             richEdit.LoadDocument(fileName, DocumentFormat.PlainText);
+            DXSplashScreen.Close();
         }
         #endregion
 
@@ -149,7 +152,7 @@ namespace XmlToDT
             saveFileDialog.Filter = "xml files|*.xml";
             saveFileDialog.OverwritePrompt = true;
             saveFileDialog.CheckPathExists = true;
-            saveFileDialog.FileName = "BMS___Protocol["+DateTime.Now.Date+"]";
+            saveFileDialog.FileName = "BMS___Protocol-zh-CN";
             DialogResult result = saveFileDialog.ShowDialog();
             if (result == System.Windows.Forms.DialogResult.OK && saveFileDialog.FileName != null) //打开保存文件对话框
             {
@@ -178,6 +181,7 @@ namespace XmlToDT
 
         private void PreviewXML_Executed(object sender, ExecutedRoutedEventArgs e)
         {
+            DXSplashScreen.Show<SplashScreenBomb>();
             xmlFile.AutoHideExpandState = DevExpress.Xpf.Docking.Base.AutoHideExpandState.Expanded;
             string fileName = AppDomain.CurrentDomain.BaseDirectory + "\\" + "interimXML.xml";
             if (File.Exists(fileName))
@@ -185,6 +189,7 @@ namespace XmlToDT
             DealXML.ConvertDataSetToXMLFile(DataSource, fileName);
             richEdit.LoadDocument(fileName, DocumentFormat.PlainText);
             File.Delete(fileName);
+            DXSplashScreen.Close();
         }
         #endregion
 

@@ -101,7 +101,7 @@ namespace XmlToDT
 
         public void RemoveRow()
         {
-            if (SelectIndex < 0)
+            if (SelectIndex < 0 || DetailTable.Rows.Count == 0)
             {
                 return;
             }
