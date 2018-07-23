@@ -10,7 +10,7 @@
         xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
         x:Class="XmlToDT.MainWindow"
         Title="bq-XTD" Height="680" Width="1200" Loaded="MainWindow_Loaded"
-        dx:ThemeManager.ThemeName="MetropolisLight" Icon="XML.ico" WindowStartupLocation="CenterScreen">
+        Icon="XML.ico" WindowStartupLocation="CenterScreen">
     <dx:DXWindow.Resources>
         <local:IsEnableConverter x:Key="iec"/>
 
