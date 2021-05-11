@@ -212,53 +212,51 @@ namespace XmlToDT
 
         private void TranslateComm_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            foreach (DataRow dr_langu in LanguageTable.Rows)
+            try
             {
-                foreach (var item in tabSource)
+                foreach (DataRow dr_langu in LanguageTable.Rows)
                 {
-                    foreach (DataRow dr in item.DetailTable.Rows)
+                    if (dr_langu[0].Equals(System.DBNull.Value))
                     {
-                        for (int j = 0; j < item.DetailTable.Columns.Count; j++)
+                        continue;
+                    }
+                    foreach (var item in tabSource)
+                    {
+                        foreach (DataRow dr in item.DetailTable.Rows)
                         {
-                            if (e.Parameter.ToString()=="Zh_Ru")
+                            for (int j = 0; j < item.DetailTable.Columns.Count; j++)
                             {
-                                if (dr[j].ToString() == dr_langu[0].ToString())
+                                if (e.Parameter.ToString() == "Zh_Ru")
                                 {
-                                    dr[j] = dr_langu[1].ToString();
+                                    if (dr[j].ToString() == dr_langu[0].ToString())
+                                    {
+                                        dr[j] = dr_langu[1].ToString();
+                                    }
                                 }
-                                //else if(dr[j].ToString() == dr_langu[1].ToString())
-                                //{
-                                //        dr[j] = dr_langu[0].ToString();
-                                //}
-                            }
-                            else if (e.Parameter.ToString() == "Zh_En")
-                            {
-                                if (dr[j].ToString() == dr_langu[0].ToString())
+                                else if (e.Parameter.ToString() == "Zh_En")
                                 {
-                                    dr[j] = dr_langu[2].ToString();
+                                    if (dr[j].ToString() == dr_langu[0].ToString())
+                                    {
+                                        dr[j] = dr_langu[2].ToString();
+                                    }
                                 }
-                                //else if (dr[j].ToString() == dr_langu[2].ToString())
-                                //{
-                                //    dr[j] = dr_langu[0].ToString();
-                                //}
-                            }
-                            else
-                            {
-                                if (dr[j].ToString() == dr_langu[1].ToString())
+                                else
                                 {
-                                    dr[j] = dr_langu[2].ToString();
+                                    if (dr[j].ToString() == dr_langu[1].ToString())
+                                    {
+                                        dr[j] = dr_langu[2].ToString();
+                                    }
                                 }
-                                //else if (dr[j].ToString() == dr_langu[2].ToString())
-                                //{
-                                //    dr[j] = dr_langu[1].ToString();
-                                //}
+
                             }
-                            
                         }
                     }
                 }
             }
-
+            catch (Exception ex)
+            {
+                DXMessageBox.Show(ex.Message, "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         #endregion
 
